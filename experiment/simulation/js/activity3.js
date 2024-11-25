@@ -311,7 +311,7 @@ function a4_display_msg() {
     if (current_msg_i >= a4_msg.length) {
         //activity4 completed
         a4_remove_event();
-        let end_act4 = `<button id="panel1_btn" class="btn btn-primary" onclick="activity6();" style="position: absolute; bottom: 12vh; width: 85%;">Next</button>`;
+        let end_act4 = `<button id="panel1_btn" class="btn btn-primary" onclick="activity5();" style="position: absolute; bottom: 12vh; width: 85%;">Next</button>`;
         pp.addtorightpannel(end_act4, 3);
     }
     else {
@@ -406,4 +406,5 @@ const add_a3_panel = (canvas, right_position, top_position) => {
     a3_panel.style.width = "19%";
     // document.getElementById('root').appendChild(a3_panel);
 };
+//activity3();
 //# sourceMappingURL=activity3.js.map

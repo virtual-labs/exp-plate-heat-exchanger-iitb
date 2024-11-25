@@ -11,6 +11,7 @@ function activity7() {
     pp.showtitle(`<p id='exp-title'>Calculate first row for both tables</p>`, 3);
     pp.showtitle(`<p id='exp-title'>Formulae for calculation</p>`, 4);
     pp.showdescription(`
+
         <p style='text-align: left !important; font-weight: 500; font-size: 1.5vw;'>$$ t_{avg} = \\frac{t_1 + t_2}{2} $$ </p>
         <p style='text-align: left !important; font-weight: 500; font-size: 1.5vw;'>$$ S (cm) = b * w $$ </p>
         <p style='text-align: left !important; font-weight: 500; font-size: 1.5vw;'>$$ HTA (sq cm) = \\frac{length}{100} * \\frac{w}{100} * Number of chan $$ </p>
@@ -26,9 +27,11 @@ function activity7() {
         <p style='text-align: left !important; font-weight: 500; font-size: 1.5vw;'>$$\\frac{1}{hi_i} = \\frac{1}{Ui_i} - \\frac{1}{ho_i} $$</p>
         <p style='text-align: left !important; font-weight: 500; font-size: 1.5vw;'>$$ h_{exp} = hi_i$$</p>
         <p style='text-align: left !important; font-weight: 500; font-size: 1.5vw;'> $$ hi_{theo} = c_{val} * (Re_i)^{0.52} * (Pr_i)^{b_{val}} $$</p>
+
+        
     </div>
     `, 4);
-    pp.addtoleftpannel(`<button class='btn btn-primary' onclick='show_offcanvas4();' style='width: 35%; margin: 2%;'>Show Formulae</button>`);
+    // pp.addtoleftpannel(`<button class='btn btn-primary' onclick='show_offcanvas4();' style='width: 35%; margin: 1%; margin-left: 30%; position: relative; top: 1vw;'>Show Formulae</button>`);
     pp.showdescription(`
     <div style='text-align: center;'>
         <p>$$ t1 =  ${phe_table['t1']} C $$ and $$ t2 = ${phe_table['t2']}  C $$ </p>
@@ -50,11 +53,17 @@ function activity7() {
     </div>
     `, 3);
     let hide_btn = document.getElementsByClassName('offcanvasbtn')[1];
-    hide_btn.style.display = 'none';
+    hide_btn.style.position = 'relative';
+    hide_btn.style.left = '94vw';
+    hide_btn.style.top = '20px';
+    hide_btn.innerHTML = `<i class="bi bi-clipboard" style="font-size: calc(1vw + 12px);"></i>`;
+    hide_btn.onclick = show_offcanvas4;
     load_main_table();
     var bsOffcanvas = new bootstrap.Offcanvas(document.getElementById("offcanvasRight3"));
     bsOffcanvas.show();
-    MathJax.typeset();
+    setTimeout(() => {
+        MathJax.typeset();
+    }, 100);
 }
 function load_main_table() {
     let heading_1 = ['S No.', "T (s)", 'T1 (C)', 'T2 (C)', 'v (cc/s)', "m (kg/hr)", 'u (cm/s)', 'LMTD (C)', 'Q (kcal/hr)', 'Ui (kcal/hr m2 C)', 'log(Ui)', 'log(m)', 'Check'];
@@ -63,9 +72,9 @@ function load_main_table() {
     data2[0] = [];
     //load data for first table
     data1[0].push('1');
-    data1[0].push(phe_table['t'][0]);
-    data1[0].push(phe_table['T1'][0]);
-    data1[0].push(phe_table['T2'][0]);
+    data1[0].push(phe_table['t'][0].toFixed(3));
+    data1[0].push(phe_table['T1'][0].toFixed(3));
+    data1[0].push(phe_table['T2'][0].toFixed(3));
     data1[0].push(`<input type='text' class='form-control' id='v-inp' style='width: 100%' />`);
     data1[0].push(`<input type='text' class='form-control' id='m-inp' style='width: 100%' />`);
     data1[0].push(`<input type='text' class='form-control' id='u-inp' style='width: 100%' />`);
@@ -117,7 +126,7 @@ function load_main_table_data() {
         data1[i].push(phe_table['lnm'][i].toFixed(4));
         //load data for second table
         data2[i].push(i + 1);
-        data2[i].push(phe_table['t'][i]);
+        data2[i].push(phe_table['t'][i].toFixed(3));
         data2[i].push(phe_table['m256'][i].toFixed(4));
         data2[i].push(phe_table['m-256'][i].toFixed(4));
         data2[i].push(phe_table['re'][i].toFixed(4));
@@ -282,4 +291,5 @@ function show_offcanvas4() {
     var bsOffcanvas = new bootstrap.Offcanvas(document.getElementById("offcanvasRight4"));
     bsOffcanvas.show();
 }
+//activity7();
 //# sourceMappingURL=activity7.js.map
