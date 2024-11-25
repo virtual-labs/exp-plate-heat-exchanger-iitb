@@ -27,6 +27,8 @@ function activity6() {
     pp.clearleftpannel();
     pp.clearrightpannel();
     pp.addoffcanvas(3);
+    let slider_ele = `<label for='fr-slider' style='position: absolute; top: 38vw; left: 8vw; width: 15vw; font-size: 1.3vw;'>Flow Rate Indicator</label><input disabled type='range' min='0' max='7' step='1' value='0' id='fr-slider' style='position: absolute; top: 40vw; left: 8vw; width: 15vw;' />`;
+    pp.addtoleftpannel(slider_ele);
     pp.addcanvas('main-canvas');
     pp.showtitle(`<p id='exp-title'>Perfom the task to simulate the experiment</p>`, 3);
     canvas = pp.canvas;
@@ -50,7 +52,7 @@ function activity6() {
     context = canvas.getContext("2d");
     rect = canvas.getBoundingClientRect();
     //table_0_draw();
-    canvas.addEventListener('click', a6_mouseclick_seq_2); //inlet cold fluid vlave
+    // canvas.addEventListener('click',a6_mouseclick_seq_2);//inlet cold fluid vlave
     scene = new Scene();
     //add_a6_panel(canvas, `${rect.x + canvas.width - 300}px`, `${rect.y}px`);
     var first_geo = new Chemistry.Custome_image(seq0_img, new Chemistry.Point(470, 440), 688, 650, canvas);
@@ -223,12 +225,27 @@ function draw_seq_all() {
     else if (seq == 13) {
         seq_container[2].draw();
         console.log("glass fill animation completed");
-        // let a6_text = new Chemistry.Text("Observation Table", new Chemistry.Point(1125, 600), canvas);
-        // a6_text.color = "yellow";
-        // a6_text.font = "24px";
-        // a6_text.draw();
-        // document.getElementById("a6-question-div-box").innerText = "See Table for 8 different flow rates";
-        //    add_to_content("Note down all the readings, You require to fill the table in the next activity");
+        canvas.addEventListener('click', open_glass_section_valve_anim);
+        seq = 14;
+        pp.showdescription(`<p class='discription_text'>Now open the outlet valve again</p>`, 3);
+        var bsOffcanvas = new bootstrap.Offcanvas(document.getElementById("offcanvasRight3"));
+        bsOffcanvas.show();
+    }
+    else if (seq == 14 && seq_container[seq_container.length - 1].l < seq_container[seq_container.length - 1].l_last) {
+        window.requestAnimationFrame(draw_seq_all);
+        seq_container[2].draw();
+        seq_container[3].draw();
+        seq_container[4].draw();
+        seq_container[5].draw();
+    }
+    else if (seq == 14) {
+        seq = 15;
+        seq_container[seq_container.length - 2].img = seq2_img;
+        draw_seq_all();
+        seq_container[2].draw();
+        seq_container[3].draw();
+        seq_container[4].draw();
+        seq_container[5].draw();
         pp.showdescription(`<p class='discription_text'>Note down all the readings, You require to fill the table in the next activity</p>`, 3);
         show_table_0 = true;
         if (t0) {
@@ -236,9 +253,6 @@ function draw_seq_all() {
         }
         var bsOffcanvas = new bootstrap.Offcanvas(document.getElementById("offcanvasRight3"));
         bsOffcanvas.show();
-        // if(!document.getElementById("table-btn")) {
-        //     add_button(`<button style="margin-bottom: 5%; font-size: 1.3vw;" id="table-btn" class="btn btn-primary" onclick="table_0_draw();">Next</button>`);
-        // }
         pp.addtorightpannel(act6_table_btn, 3);
     }
     if (show_t1t2) {
@@ -294,6 +308,9 @@ function a6_mouseclick_seq_2(e) {
             // a6_text.font = "24px";
             // a6_text.draw();
             a6_mouseclick_seq_3();
+            let sl = document.getElementById('fr-slider');
+            sl.value = '1';
+            canvas.removeEventListener('click', a6_mouseclick_seq_2);
         }
     }
     // a6_check_isinside_cold_in(x,y);
@@ -633,6 +650,27 @@ function a6_mouseclick_seq_12(e) {
     }
 }
 //console.log("the selected temp value is: " + readings[selected_ind].reading[0][1]);
+function open_glass_section_valve_anim(e) {
+    e.preventDefault();
+    console.log("event triggered");
+    let x = Math.round((e.clientX - rect.x) / lscale);
+    let y = Math.round((canvas.height - (e.clientY - rect.y)) / lscale);
+    console.log(x, y);
+    if (y >= 494 && y <= 545) {
+        if (x >= 506 && x <= 681) {
+            let seq_img = new Chemistry.anim_image_y_dir_down(seq3_img, new Chemistry.Point(470, 440), 688, 650, canvas);
+            all_valves[1].img = blue_valve;
+            all_valves[1].stang = 45;
+            all_valves[1].stpt.y = 520;
+            seq_container.push(seq_img);
+            seq_img.name = "last";
+            seq_img.l = 1;
+            seq_img.l_last = 700;
+            seq_img.width = 0;
+            draw_seq_all();
+        }
+    }
+}
 function get_Ti_text() {
     //if 81 then 81.2 if 83 then 83.2
     Ti += (79.9 / 181.0); //81.2-28.2=53 181 is the no of times loop execute check data set
@@ -693,6 +731,8 @@ function a6_add_slider() {
     // ele.style.top = `${rect.y + canvas.height - 120*lscale}px`;
 }
 function table_0_draw() {
+    pp.clearleftpannel();
+    pp.showdescription(`<p class='discription_text'>Enter the corresponding values</p>`, 3);
     if (document.getElementById('panel1_btn')) {
         let btn = document.getElementById('panel1_btn');
         btn.remove();
@@ -730,6 +770,7 @@ function verify_readings() {
         return false;
     }
     alert('Both entered values are correct!!');
+    pp.showdescription(`<p class='discription_text'></p>`, 3);
     document.getElementById("table-0-verify").remove();
     fill_table(index);
     return true;
@@ -760,4 +801,5 @@ function set_global_temp_ind(temp_value) {
     }
     console.log("index set to " + selected_ind);
 }
+//activity6();
 //# sourceMappingURL=activity6.js.map

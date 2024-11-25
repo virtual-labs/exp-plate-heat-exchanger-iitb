@@ -47,10 +47,6 @@ function draw_char_1() {
                     borderColor: 'blue',
                     tension: 0.5,
                     showLine: false,
-                    // yAxisID: 'A',
-                    // borderWidth: 1,
-                    // borderColor: "green",
-                    // backgroundColor: "rgba(34, 139, 34, 0.5)",
                 },
                 {
                     label: 'Linear Regression',

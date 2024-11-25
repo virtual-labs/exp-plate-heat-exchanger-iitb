@@ -33,7 +33,7 @@ class Pannel {
 
         </div>
     </div>
-    <button class="offcanvasbtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight${id}" aria-controls="offcanvasRight${id}" style="width: 4%;"><i class="bi bi-gear offcanvasicon" style="font-size: calc(1vw + 12px);"></i></button>
+    <button class="offcanvasbtn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight${id}" aria-controls="offcanvasRight${id}" style="width: 4%;"><i class="bi bi-arrow-bar-left" style="font-size: calc(1vw + 12px);"></i></button>
       <br>  `;
     }
     addcanvas(canvasid) {
