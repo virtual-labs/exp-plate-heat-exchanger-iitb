@@ -50,4 +50,4 @@ total number of plates less two.</p>
 
 <p><strong>Conclusion:</strong> This manual provides insights into how flow rate and temperature affect the heat 
 transfer coefficient in plate heat exchangers. By understanding these effects, you can optimize 
-heat exchanger performance, improve energy efficiency, and make informed design decisions.</p>
+heat exchanger performance, improve energy efficiency, and make informed design decisions.</p><script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"> </script>
