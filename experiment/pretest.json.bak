@@ -1,11 +1,49 @@
 [
     {
-        "question": "Sample Question",
+        "question": "One of the main advantages of plate heat exchangers is:",
         "qid": 1,
-        "option_a": "Option A",
-        "option_b": "Option B",
-        "option_c": "Option C",
-        "option_d": "Option D",
+        "option_a": "Flexibility",
+        "option_b": "Cheap",
+        "option_c": "Durability",
+        "option_d": "Less maintenance",
+        "correct_option": "a"
+    },
+
+    {
+        "question": "One of the major limitations of plate heat exchangers is:",
+        "qid": 2,
+        "option_a": "High cost",
+        "option_b": "Pressure drop",
+        "option_c": "Leakages",
+        "option_d": "Maintenance",
+        "correct_option": "b"
+    },
+
+    {
+        "question": "Which of the following is a popular application of plate heat exchangers?",
+        "qid": 3,
+        "option_a": "Distillation",
+        "option_b": "Pasteurization",
+        "option_c": "Crystallization",
+        "option_d": "Solvent Extraction",
+        "correct_option": "b"
+    },
+
+    {
+        "question": "Which of the following is a key element in plate heat exchangers?",
+        "qid": 4,
+        "option_a": "Gasket",
+        "option_b": "Fluid",
+        "option_c": "Material of construction",
+        "option_d": "Thickness of plates",
         "correct_option": "a"
     }
+
 ]
+
+
+
+
+
+
+
